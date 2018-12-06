@@ -1,0 +1,33 @@
+{
+  "name": "news-scraper",
+  "version": "1.0.0",
+  "description": "scraper app",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TomStone76/news-scraper.git"
+  },
+  "keywords": [
+    "scraper",
+    "express",
+    "mongoose",
+    "cheerio",
+    "axios"
+  ],
+  "author": "Tom Stone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TomStone76/news-scraper/issues"
+  },
+  "homepage": "https://github.com/TomStone76/news-scraper#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^5.3.15"
+  }
+}
