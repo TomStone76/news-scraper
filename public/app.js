@@ -43,6 +43,6 @@ $(document).on("click", "#savenote", function () {
             $("#notes").empty();
         });
 
-    $("#titlinput").val("");
+    $("#titleinput").val("");
     $("#bodyinput").val("");
 });
