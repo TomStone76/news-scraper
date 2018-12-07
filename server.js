@@ -10,7 +10,7 @@ let PORT = 3000;
 
 let app = express();
 
-app.use(express.urlencoded({ extended: true });
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.statis("public"));
 
