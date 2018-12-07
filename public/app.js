@@ -20,4 +20,29 @@ $(document).on("click", "p", function() {
         $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
         $("#notes").append("button data-id='" + data._id + "' id='savenote'>Save Note</button>");
 
-        if (data.note)
+        if (data.note) {
+            $("#titleinput").val(data.note.title);
+            $("#bodyinput").val(data.note.body);
+        }
+    });
+});
+
+$(document).on("click", "#savenote", function() {
+    let thisId = $(this).attr("data-id");
+
+    $.ajax({
+        method: "POST",
+        url: "/articles/" + thisId,
+        data: {
+            title: $("#titleinput").val(),
+            body: $("#bodyinput").val()
+        }
+    })
+    .then(function(data) {
+        console.log(data);
+        $("#notes").empty();
+    });
+
+    $("#titlinput").val("");
+    $("#bodyinput").val("");
+});
