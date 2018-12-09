@@ -12,7 +12,7 @@ let app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.statis("public"));
+app.use(express.static("public"));
 
 mongoose.connect("MONGODB PATH HERE", { useNewUrl: true });
 
