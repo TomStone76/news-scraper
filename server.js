@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-mongoose.connect("MONGODB PATH HERE", { useNewUrl: true });
+mongoose.connect("mongodb://localhost:27017/scraper", { useNewUrl: true });
 
 app.get("/scrape", function(req, res) {
     axios.get("http://www.bbc.com/news").then(function(response) {
