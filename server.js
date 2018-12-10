@@ -41,6 +41,8 @@ app.get("/scrape", function(req, res) {
         });
     });
 
+    //app.get("/")
+
     app.get("/articles", function(req, res) {
         db.Article.find({})
             .then(function(dbArticle) {
@@ -78,3 +80,6 @@ app.get("/scrape", function(req, res) {
     app.listen(PORT, function() {
         console.log("App running on port " + PORT + "!");
     });
+
+    //pull defs out
+    //define another app.get route for route
