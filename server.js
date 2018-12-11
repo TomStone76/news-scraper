@@ -18,7 +18,7 @@ mongoose.connect("mongodb://localhost:27017/scraper", { useNewUrl: true });
 
 app.get("/scrape", function(req, res) {
     
-    axios.get("http://www.echojs.com/").then(function(response) {
+    axios.get("http://www.echojs.com/").then(function(response) { //find news api key
         console.log(response);
         let $ = cheerio.load(response.title);
 
