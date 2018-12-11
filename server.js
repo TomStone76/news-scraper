@@ -17,8 +17,11 @@ app.use(express.static("public"));
 mongoose.connect("mongodb://localhost:27017/scraper", { useNewUrl: true });
 
 app.get("/scrape", function(req, res) {
-    axios.get("http://www.bbc.com/news").then(function(response) {
-        let $ = cheerio.load(response.data);
+    
+    axios.get("http://www.echojs.com/").then(function(response) {
+        console.log(response);
+        let $ = cheerio.load(response.title);
+
         $("article h2").each(function(i, element) {
             let result = {};
             result.title = $(this)
@@ -38,15 +41,15 @@ app.get("/scrape", function(req, res) {
             });
 
             res.send("Scrape Complete");
-        });
     });
+});
 
     //app.get("/")
 
     app.get("/articles", function(req, res) {
         db.Article.find({})
             .then(function(dbArticle) {
-            res.json(dbArticle);
+            res.render("index", dbArticle);
         })
         .catch(function(err) {
             res.json(err);
@@ -82,4 +85,4 @@ app.get("/scrape", function(req, res) {
     });
 
     //pull defs out
-    //define another app.get route for route
+    //define another app.get route for root
