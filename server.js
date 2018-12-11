@@ -22,13 +22,11 @@ mongoose.connect("mongodb://localhost:27017/scraper", {
 
 app.get("/scrape", function (req, res) {
 
-    let queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
-
-    let queryParams = { "api-key": "b9f91d369ff59547cd47b931d8cbc56b:0:74623931" };
+    let queryURL = "https://content.guardianapis.com/search?api-key=1b6b0b3e-aff4-49b8-8b06-0ab3892d3e4d ";
 
     axios.get(queryURL).then(function (response) { //find news api key
         console.log(response);
-        let $ = cheerio.load(response.title);
+        let $ = cheerio.load(response);
 
         $("article h2").each(function (i, element) {
             let result = {};
