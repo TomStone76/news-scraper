@@ -16,9 +16,14 @@ app.use(express.urlencoded({
 app.use(express.json());
 app.use(express.static("public"));
 
+app.engine("handlebars", handlebars({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
 mongoose.connect("mongodb://localhost:27017/scraper", {
     useNewUrl: true
 });
+
+var articles = [];
 
 app.get("/scrape", function (req, res) {
 
@@ -35,7 +40,7 @@ app.get("/scrape", function (req, res) {
                 .text();
             result.link = $(this)
                 .children("a")
-                .attr("href");
+                .attr("href");ç
 
             db.Article.create(result)
                 .then(function (dbArticle) {
