@@ -36,14 +36,15 @@ app.get("/scrape", function (req, res) {
 
         console.log(response);
 
-        $("article h2").each(function (i, element) {
+        $("article").each(function (i, element) {
             let result = {};
-            result.title = $(this)
-                .children("a")
-                .text();
-            result.link = $(this)
-                .children("a")
-                .attr("href");
+            result.title = $(this).find("h3");
+                // .children("a")
+                // .text();
+            result.teaser = $(this).find("p");
+            result.link = $(this).find("a")
+                // .children("a")
+                // .attr("href");
 
             db.Article.create(result)
                 .then(function (dbArticle) {
@@ -109,3 +110,8 @@ app.listen(PORT, function () {
 
 //pull defs out
 //define another app.get route for root
+
+
+//title
+//teaser
+//link
