@@ -27,11 +27,14 @@ var articles = [];
 
 app.get("/scrape", function (req, res) {
 
-    let queryURL = "https://content.guardianapis.com/search?api-key=1b6b0b3e-aff4-49b8-8b06-0ab3892d3e4d ";
-
+    let queryURL = "https://www.npr.org/";
+    console.log(queryURL);
+    
     axios.get(queryURL).then(function (response) { //find news api key
-        console.log(response);
+
         let $ = cheerio.load(response);
+
+        console.log(response);
 
         $("article h2").each(function (i, element) {
             let result = {};
@@ -40,7 +43,7 @@ app.get("/scrape", function (req, res) {
                 .text();
             result.link = $(this)
                 .children("a")
-                .attr("href");ç
+                .attr("href");
 
             db.Article.create(result)
                 .then(function (dbArticle) {
@@ -52,6 +55,7 @@ app.get("/scrape", function (req, res) {
         });
 
         res.send("Scrape Complete");
+        
     });
 });
 
