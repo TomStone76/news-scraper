@@ -20,7 +20,7 @@ app.engine("handlebars", handlebars({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 mongoose.connect("mongodb://localhost:27017/scraper", {
-    useNewUrl: true
+    useNewUrlParser: true
 });
 
 var articles = [];
@@ -34,17 +34,15 @@ app.get("/scrape", function (req, res) {
 
         let $ = cheerio.load(response);
 
-        console.log(response);
-
         $("article").each(function (i, element) {
             let result = {};
-            result.title = $(this).find("h3");
-                // .children("a")
-                // .text();
-            result.teaser = $(this).find("p");
-            result.link = $(this).find("a")
-                // .children("a")
-                // .attr("href");
+            result.title = $(this).find("h3")
+                .text();
+                console.log(result.title)
+            result.summary = $(this).find("p")
+                .text();
+            result.link = $(this).find("h3").parent()
+                .attr("href");
 
             db.Article.create(result)
                 .then(function (dbArticle) {
